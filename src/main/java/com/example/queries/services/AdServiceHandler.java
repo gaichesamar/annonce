@@ -6,16 +6,19 @@ import com.example.commonApi.events.AdValidatedEvent;
 import com.example.commonApi.query.GetAllAdsQuery;
 import com.example.commonApi.query.GetAdByIdQuery;
 import com.example.queries.entities.Ad;
+import com.example.queries.producer.AnnonceProducer;
 import com.example.queries.repositories.AdRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.queryhandling.QueryHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 @AllArgsConstructor
@@ -24,7 +27,8 @@ import java.util.List;
 @Service
 public class AdServiceHandler {
     private AdRepository adRepository;
-
+@Autowired
+private AnnonceProducer annonceProducer;
     @EventHandler
     public void on(AdCreatedEvent event){
         Ad ad = new Ad();
@@ -41,9 +45,11 @@ public class AdServiceHandler {
         ad.setCigarette(event.isCigarette());
         ad.setAller_retour(event.isAller_retour());
         ad.setAnimaux_de_companie(event.isAnimaux_de_companie());
+        ad.setDescriptionvoyage(event.getDescriptionvoyage());
         ad.setStatus(event.getAdStatus());
 
         adRepository.save(ad);
+        annonceProducer.sendMessage(event);
     }
     @EventHandler
     public void on(AdValidatedEvent event){

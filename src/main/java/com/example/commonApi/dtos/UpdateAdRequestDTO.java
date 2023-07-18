@@ -25,5 +25,7 @@ public class UpdateAdRequestDTO {
     private boolean animaux_de_companie;
     private boolean cigarette ;
     private boolean aller_retour;
+    private String descriptionvoyage;
+
 
 }

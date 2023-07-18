@@ -7,6 +7,7 @@ import com.example.commonApi.commands.UpdateAdCommand;
 import com.example.commonApi.dtos.UpdateAdRequestDTO;
 import com.example.commonApi.dtos.createAdRequestDTO;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.eventsourcing.eventstore.EventStore;
@@ -14,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
@@ -63,7 +63,8 @@ public class AdCommandController {
                 request.getLieuArr(),
                 request.isCigarette(),
                 request.isAller_retour(),
-                request.isAnimaux_de_companie()
+                request.isAnimaux_de_companie(),
+                request.getDescriptionvoyage()
         ));
         return commandResponse.exceptionally(ex -> {
             throw new RuntimeException("Failed to update ad data:" + ex.getMessage());

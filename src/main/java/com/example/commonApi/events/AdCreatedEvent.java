@@ -2,11 +2,15 @@ package com.example.commonApi.events;
 
 import com.example.commonApi.enums.AdStatus;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@NoArgsConstructor
+
 public class AdCreatedEvent extends baseEvent<String> {
+
 
     @Getter private String description;
     @Getter private LocalDate dateDep;
@@ -21,10 +25,10 @@ public class AdCreatedEvent extends baseEvent<String> {
     @Getter private boolean animaux_de_companie;
     @Getter private boolean cigarette ;
     @Getter private boolean aller_retour;
-    @Getter private String desc;
+    @Getter private String descriptionvoyage;
     @Getter private AdStatus adStatus;
 
-    public AdCreatedEvent(String id, String description, LocalDate dateDep, LocalDate dateArr, String heureDep, String heureArr, BigDecimal prixPlace, String lieuDep, int nbrPlace, String lieuArr, boolean animaux_de_companie, boolean cigarette, boolean aller_retour,String desc,AdStatus adStatus) {
+    public AdCreatedEvent(String id, String description, LocalDate dateDep, LocalDate dateArr, String heureDep, String heureArr, BigDecimal prixPlace, String lieuDep, int nbrPlace, String lieuArr, boolean animaux_de_companie, boolean cigarette, boolean aller_retour, String descriptionvoyage, AdStatus adStatus) {
         super(id);
         this.description = description;
         this.dateDep = dateDep;
@@ -38,7 +42,7 @@ public class AdCreatedEvent extends baseEvent<String> {
         this.animaux_de_companie = animaux_de_companie;
         this.cigarette = cigarette;
         this.aller_retour = aller_retour;
-        this.desc=desc;
+        this.descriptionvoyage=descriptionvoyage;
         this.adStatus = adStatus;
     }
 }

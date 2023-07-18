@@ -1,11 +1,11 @@
 package com.example.queries.entities;
 
 import com.example.commonApi.enums.AdStatus;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table (name="Annonce")
+@Table(name="Annonce")
 public class Ad {
     @Id
     private String id;

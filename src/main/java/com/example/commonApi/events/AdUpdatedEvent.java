@@ -5,8 +5,6 @@ import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 public class AdUpdatedEvent extends baseEvent<String> {
 
@@ -23,9 +21,11 @@ public class AdUpdatedEvent extends baseEvent<String> {
     @Getter private boolean animaux_de_companie;
     @Getter private boolean cigarette ;
     @Getter private boolean aller_retour;
+    @Getter private String descriptionvoyage;
+
     @Getter private AdStatus adStatus;
 
-    public AdUpdatedEvent(String id, String description, LocalDate dateDep, LocalDate dateArr, String heureDep, String heureArr, BigDecimal prixPlace, String lieuDep, int nbrPlace, String lieuArr, boolean animaux_de_companie, boolean cigarette, boolean aller_retour, AdStatus adStatus) {
+    public AdUpdatedEvent(String id, String description, LocalDate dateDep, LocalDate dateArr, String heureDep, String heureArr, BigDecimal prixPlace, String lieuDep, int nbrPlace, String lieuArr, boolean animaux_de_companie, boolean cigarette, boolean aller_retour, String descriptionvoyage, AdStatus adStatus) {
         super(id);
         this.description = description;
         this.dateDep = dateDep;
@@ -39,6 +39,7 @@ public class AdUpdatedEvent extends baseEvent<String> {
         this.animaux_de_companie = animaux_de_companie;
         this.cigarette = cigarette;
         this.aller_retour = aller_retour;
+        this.descriptionvoyage=descriptionvoyage;
         this.adStatus = adStatus;
     }
 }

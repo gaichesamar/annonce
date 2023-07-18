@@ -22,8 +22,10 @@ public class UpdateAdCommand extends baseCommand<String>{
     @Getter private boolean animaux_de_companie;
     @Getter private boolean cigarette ;
     @Getter private boolean aller_retour;
+    @Getter private String descriptionvoyage;
 
-    public UpdateAdCommand(String id, String description, LocalDate dateDep, LocalDate dateArr, String heureDep, String heureArr, BigDecimal prixPlace, String lieuDep, int nbrPlace, String lieuArr, boolean animaux_de_companie, boolean cigarette, boolean aller_retour) {
+
+    public UpdateAdCommand(String id, String description, LocalDate dateDep, LocalDate dateArr, String heureDep, String heureArr, BigDecimal prixPlace, String lieuDep, int nbrPlace, String lieuArr, boolean animaux_de_companie, boolean cigarette, boolean aller_retour, String descriptionvoyage) {
         super(id);
         this.description = description;
         this.dateDep = dateDep;
@@ -37,5 +39,6 @@ public class UpdateAdCommand extends baseCommand<String>{
         this.animaux_de_companie = animaux_de_companie;
         this.cigarette = cigarette;
         this.aller_retour = aller_retour;
+        this.descriptionvoyage=descriptionvoyage;
     }
 }

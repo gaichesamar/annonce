@@ -18,22 +18,22 @@ import java.time.LocalDate;
 @Aggregate
 public class AdAggregate {
     @AggregateIdentifier
-    private String adId;
-    private String description;
-    private LocalDate dateDep;
-    private LocalDate dateArr;
-    private String heureDep;
-    private String heureArr;
-    private BigDecimal prixPlace;
-    private String lieuDep;
-    private int nbrPlace;
-    private String lieuArr;
-    private boolean animaux_de_companie;
-    private boolean cigarette ;
-    private boolean aller_retour;
-    private AdStatus status;
-    private String desc;
+    String adId;
+    String description;
+    LocalDate dateDep;
+    LocalDate dateArr;
+    String heureDep;
+    String heureArr;
+     BigDecimal prixPlace;
+     String lieuDep;
+    int nbrPlace;
+  String lieuArr;
+   boolean animaux_de_companie;
+    boolean cigarette ;
+  boolean aller_retour;
+    AdStatus status;
 
+private String descriptionvoyage;
     public AdAggregate() {
         //Required by Axon
     }
@@ -73,6 +73,7 @@ public class AdAggregate {
         this.cigarette=event.isCigarette();
         this.aller_retour=event.isAller_retour();
         this.animaux_de_companie=event.isAnimaux_de_companie();
+        this.descriptionvoyage= event.getDescriptionvoyage();
         this.status= AdStatus.CREATED;
     AggregateLifecycle.apply(new AdValidatedEvent(
             event.getId(),
@@ -99,6 +100,7 @@ public class AdAggregate {
                 updateAdCommand.isCigarette(),
                 updateAdCommand.isAller_retour(),
                 updateAdCommand.isAnimaux_de_companie(),
+                updateAdCommand.getDescriptionvoyage(),
                 AdStatus.UPDATED
         ));
 
@@ -118,6 +120,7 @@ public class AdAggregate {
         this.cigarette=event.isCigarette();
         this.aller_retour=event.isAller_retour();
         this.animaux_de_companie=event.isAnimaux_de_companie();
+        this.descriptionvoyage=event.getDescriptionvoyage();
     this.status= AdStatus.UPDATED;
     AggregateLifecycle.apply(new AdValidatedEvent(
             event.getId(),
